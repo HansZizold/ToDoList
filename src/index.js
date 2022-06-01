@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import '../src/style.css';
+// import _ from 'lodash';
+import './style.css';
 
 // Import function 'addtask'
 import addTask from '../modules/addtask.js';
