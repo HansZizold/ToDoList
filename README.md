@@ -18,7 +18,7 @@ In this project, a basic website is built. It will allows users to add/remove/ma
 
 ## LIVE DEMO: 
 
-[Awesome Books Project](https://hanszizold.github.io/AwesomeBooksES6/)
+[To-Do List Project](https://hanszizold.github.io/ToDoList/)
 
 ## Getting Started
 
