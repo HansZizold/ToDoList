@@ -1,0 +1,58 @@
+html {
+  box-sizing: border-box;
+}
+
+.maincontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tasktodo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 64vw;
+}
+
+.formtask {
+  margin-bottom: 16px;
+}
+
+.newtask {
+  width: 63.2vw;
+  height: 24px;
+  margin: 0 12px;
+  padding-left: 12px;
+  border: 2px solid black;
+}
+
+.todolist {
+  width: 64vw;
+  height: 300px;
+  border: 2px solid black;
+}
+
+.ultask {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.litask {
+  border: 1px solid gray;
+  height: 24px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.threedots {
+  align-self: center;
+  font-size: x-large;
+  font-weight: bolder;
+  padding-bottom: 8px;
+}
