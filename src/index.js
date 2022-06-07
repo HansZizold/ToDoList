@@ -7,8 +7,7 @@ import removehtml from '../modules/removehtml.js';
 import addTask from '../modules/addtask.js';
 
 const taskDescription = document.querySelector('input');
-let checkbox = []; let
-  taskArray = [];
+let checkbox = []; let taskArray = [];
 
 // Event listener to detect a new task input and call addTask function
 taskDescription.addEventListener('keypress', (event) => {
