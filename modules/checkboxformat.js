@@ -1,4 +1,5 @@
 // Function to give format when pressing some checkbox
+// Also it changes the status of a task (true/false) and update LS 
 const checkboxFormat = (element) => {
   if (element.target.classList.contains('checkbox')) {
     element.target.parentNode.classList.toggle('checked-task');
