@@ -1,24 +1,67 @@
-// import _ from 'lodash';
 import './style.css';
 
-// Import function 'addtask'
+import checkboxFormat from '../modules/checkboxformat.js';
+import indexNormalization from '../modules/indexnormal.js';
+import updateTask from '../modules/updatetask.js';
+import removehtml from '../modules/removehtml.js';
 import addTask from '../modules/addtask.js';
 
-// THIS PART IS FOR INTRODUCING PROJECTS TO THE LIST AND DISPLAYING THEM IN THE PAGE
-// Select the form
-const formtask = document.querySelector('.formtask');
-// Add a submit event listener
-formtask.addEventListener('submit', (event) => {
-  // prevent page refresh on form submission
-  event.preventDefault();
-  // select the text input
-  const newtaskdescription = document.querySelector('.newtask');
-  // Get the value of the input and remove whitespaces
-  const newtask = newtaskdescription.value.trim();
-  // If newtask is not empty we execute addTask
-  if (newtask !== '') {
-    addTask(newtask);
-    newtaskdescription.value = '';
-    newtaskdescription.focus();
+const taskDescription = document.querySelector('input');
+let checkbox = []; let taskArray = [];
+
+// Event listener to detect a new task input and call addTask function
+taskDescription.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter' && taskDescription.value) {
+    checkbox = document.querySelectorAll('.checkbox');
+    event.preventDefault();
+    addTask(taskDescription.value);
+    // update the taskArray
+    const taskObject = {
+      description: taskDescription.value,
+      completed: false,
+      index: checkbox.length + 1,
+    };
+    taskArray.push(taskObject);
+    taskDescription.value = null;
+    // update local storage
+    localStorage.setItem('mytasks', JSON.stringify(taskArray));
+    checkbox = document.querySelectorAll('.checkbox');
   }
+});
+
+// Load local storage data
+const loadLocalStorage = () => {
+  const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
+  if (lsTasks !== null) {
+    lsTasks.forEach((element) => {
+      checkbox = document.querySelectorAll('.checkbox');
+      addTask(element.description);
+      // update the taskArray
+      const taskObject = {
+        description: element.description,
+        completed: false,
+        index:
+        checkbox.length + 1,
+      };
+      taskArray.push(taskObject);
+      localStorage.setItem('mytasks', JSON.stringify(taskArray));
+    });
+  }
+};
+loadLocalStorage();
+
+// Click listener to remove tasks
+document.addEventListener('click', (element) => {
+  if (element.target.classList.contains('checkbox') || element.target.classList.contains('trash-active')) {
+    checkboxFormat(element);
+    removehtml(element);
+    checkbox = document.querySelectorAll('.checkbox');
+    indexNormalization(checkbox);
+    taskArray = JSON.parse(localStorage.getItem('mytasks'));
+  }
+});
+
+// Change listener to edit tasks
+document.addEventListener('change', (element) => {
+  updateTask(element);
 });
