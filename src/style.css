@@ -1,58 +1,102 @@
-html {
+* {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
-.maincontainer {
+body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  padding-top: 24px;
 }
 
-.tasktodo {
+section {
+  padding-top: 24px;
+  box-shadow: 1px 6px 17px -1px rgba(34, 60, 80, 19%);
+  width: 60vw;
+}
+
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 64vw;
-}
-
-.formtask {
-  margin-bottom: 16px;
-}
-
-.newtask {
-  width: 63.2vw;
-  height: 24px;
-  margin: 0 12px;
-  padding-left: 12px;
-  border: 2px solid black;
-}
-
-.todolist {
-  width: 64vw;
-  height: 300px;
-  border: 2px solid black;
-}
-
-.ultask {
-  list-style: none;
-  padding: 0;
-  margin-top: 0;
-}
-
-.litask {
-  border: 1px solid gray;
-  height: 24px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 4px;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding: 32px 16px;
 }
 
-.threedots {
-  align-self: center;
-  font-size: x-large;
-  font-weight: bolder;
-  padding-bottom: 8px;
+input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  font-size: 16px;
+  font-style: italic;
+}
+
+button {
+  width: 100%;
+  border: none;
+  background-color: #fff;
+  padding: 24px 0;
+  font-size: 16px;
+  color: #d0d0d0;
+  border-top: 1px solid #d0d0d0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.fa-sync {
+  font-size: 20px;
+}
+
+.checkbox {
+  width: 10%;
+}
+
+.task-change {
+  padding-bottom: 0;
+}
+
+.fas {
+  font-size: 16px;
+}
+
+.fas:hover {
+  cursor: pointer;
+}
+
+.task-container {
+  padding: 32px 24px 32px 8px;
+  border-top: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  display: flex;
+  align-items: center;
+}
+
+.checked-task {
+  background-color: #fffed3;
+}
+
+.line-task {
+  text-decoration: line-through;
+  background-color: #fffed3;
+}
+
+span {
+  flex: 1;
+  font-size: 18px;
+}
+
+.fa-trash-alt {
+  display: none;
+}
+
+.trash-active {
+  display: block;
+}
+
+.edit-inactive {
+  display: none;
 }

@@ -4,24 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
   <title>To Do List</title>
-  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <main class="maincontainer">
-    <header class="todoheader">
-      <h1 class="todotitle">To Do List</h1>
-    </header>
-    <div class="tasktodo">
-      <form class="formtask">
-        <input autofocus type="text" class="newtask" id="newtask" name="newtask" required placeholder="Add to your list..." maxlength="400">
-      </form>
-      <div class="todolist">
-        <ul class="ultask">
-        </ul>
-      </div>                
+  <section>
+    <div class="header">
+      <h1>To Do List</h1>
+      <i class="fas fa-sync"></i>
     </div>
-  </main>    
-  <script type="module" src="../src/index.js"></script>
+    <form>
+      <input type="text" placeholder="Add task to your list..." class="input-text">
+      <div class="all-tasks-container">
+      </div>
+      <button type="button">Clear all Completed </button>
+    </form>
+  </section>
+  <script type="module" src="./index.js"></script>
 </body>
 </html>
