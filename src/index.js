@@ -45,6 +45,7 @@ const loadLocalStorage = () => {
         checkbox.length + 1,
       };
       taskArray.push(taskObject);
+      localStorage.setItem('mytasks', JSON.stringify(taskArray));
     });
   }
 };
