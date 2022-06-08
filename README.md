@@ -14,6 +14,8 @@ In this project, a basic website is built. It will allows users to add/remove/ma
 - *Webpack Module Bundler*
 
 ## HISTORY OF CHANGES
+**2022 Jun 07: Functionalities added: remove a group of tasks, update the key 'completed' to display true when checkbox clicked, when pressing ellipsis icon the task is focused for editing.**
+
 **2022 Jun 06: Functionalities added: add, remove and edit tasks using ES6 syntax and modules.**
 
 **2022 May 31: Project started with the functionality of adding a to do list of activities.**
