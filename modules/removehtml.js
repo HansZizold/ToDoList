@@ -5,7 +5,7 @@ const removehtml = (element) => {
     // Recover the LS data
     let lsTasks = JSON.parse(localStorage.getItem('mytasks'));
     // Remove the task deleted
-    lsTasks = lsTasks.filter((element) => element.index !== Number(deleteindex));
+    lsTasks = lsTasks.filter((task) => task.index !== Number(deleteindex));
     // Fix indexes
     for (let i = 0; i < lsTasks.length; i += 1) {
       lsTasks[i].index = i + 1;

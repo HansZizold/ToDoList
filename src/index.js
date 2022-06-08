@@ -1,10 +1,10 @@
 import './style.css';
-
 import checkboxFormat from '../modules/checkboxformat.js';
 import indexNormalization from '../modules/indexnormal.js';
 import updateTask from '../modules/updatetask.js';
 import removehtml from '../modules/removehtml.js';
 import addTask from '../modules/addtask.js';
+import clearCompleted from '../modules/clearcompleted.js';
 
 const taskDescription = document.querySelector('input');
 let checkbox = []; let taskArray = [];
@@ -64,4 +64,23 @@ document.addEventListener('click', (element) => {
 // Change listener to edit tasks
 document.addEventListener('change', (element) => {
   updateTask(element);
+});
+
+// Listener for clear completed tasks button
+document.addEventListener('click', (element) => {
+  if (element.target.classList.contains('clear-completed')) {
+    clearCompleted();
+    checkbox = document.querySelectorAll('.checkbox');
+    indexNormalization(checkbox);
+    taskArray = JSON.parse(localStorage.getItem('mytasks'));
+  }
+});
+
+// Listener por focus input field
+document.addEventListener('click', (element) => {
+  if (element.target.classList.contains('fa-ellipsis-v')) {
+    const end = element.target.parentElement.children[1].value.length;
+    element.target.parentElement.children[1].setSelectionRange(end, end);
+    element.target.parentElement.children[1].focus();
+  }
 });
