@@ -40,8 +40,7 @@ const loadLocalStorage = () => {
       const taskObject = {
         description: element.description,
         completed: false,
-        index:
-        checkbox.length + 1,
+        index: checkbox.length + 1,
       };
       taskArray.push(taskObject);
       localStorage.setItem('mytasks', JSON.stringify(taskArray));
