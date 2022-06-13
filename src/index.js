@@ -25,6 +25,7 @@ taskDescription.addEventListener('keypress', (event) => {
     taskDescription.value = null;
     // update local storage
     localStorage.setItem('mytasks', JSON.stringify(taskArray));
+    // update the checkbox variable
     checkbox = document.querySelectorAll('.checkbox');
   }
 });
