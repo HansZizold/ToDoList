@@ -6,6 +6,7 @@ const addTask = (taskText) => {
   const taskdiv = document.createElement('div');
   // assign the class 'task-container'
   taskdiv.className = 'task-container';
+  taskdiv.draggable = 'true';
   // insert the html code for each task to the div variable
   taskdiv.innerHTML += `
     <input type="checkbox" class="checkbox">
