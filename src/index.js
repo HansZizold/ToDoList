@@ -84,61 +84,61 @@ document.addEventListener('click', (element) => {
   }
 });
 
+const reorderTasks = (start, end, array) => {
+  const arrtmp = [];
+  arrtmp[end] = array[start];
+  if (start > end) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (i > end && i <= start) {
+        arrtmp[i] = array[i - 1];
+      }
+      if (i < end || i > start) {
+        arrtmp[i] = array[i];
+      }
+    }
+    return arrtmp;
+  }
+
+  for (let i = 0; i < array.length; i += 1) {
+    if (i >= start && i < end) {
+      arrtmp[i] = array[i + 1];
+    }
+    if (i < start || i > end) {
+      arrtmp[i] = array[i];
+    }
+  }
+  return arrtmp;
+};
+
 // Select the draggable element
-let dragStartIndex, dragEndIndex;
-document.querySelectorAll('.task-container').forEach(task => {
-  task.addEventListener('dragstart', e => {
+let dragStartIndex; let
+  dragEndIndex;
+document.querySelectorAll('.task-container').forEach((task) => {
+  task.addEventListener('dragstart', () => {
     dragStartIndex = +task.closest('div').getAttribute('id');
-  })
-  task.addEventListener('dragover', e => {
+  });
+  task.addEventListener('dragover', (e) => {
     e.preventDefault();
-  })
-  task.addEventListener('dragenter', e => {
+  });
+  task.addEventListener('dragenter', () => {
     task.classList.add('drag-over');
-  })
-  task.addEventListener('dragleave', e => {
+  });
+  task.addEventListener('dragleave', () => {
     task.classList.remove('drag-over');
-  })
-  task.addEventListener('drop', e => {
+  });
+  task.addEventListener('drop', () => {
     dragEndIndex = +task.closest('div').getAttribute('id');
-    taskArray = reorderTasks(dragStartIndex-1, dragEndIndex-1, taskArray);
+    taskArray = reorderTasks(dragStartIndex - 1, dragEndIndex - 1, taskArray);
     // Fix indexes
     for (let i = 0; i < taskArray.length; i += 1) {
-     taskArray[i].index = i + 1;
+      taskArray[i].index = i + 1;
     }
     localStorage.setItem('mytasks', JSON.stringify(taskArray));
-    document.querySelectorAll('.checkbox').forEach(elem => {
+    document.querySelectorAll('.checkbox').forEach((elem) => {
       elem.parentElement.remove();
-    })
+    });
     taskArray.forEach((element) => {
       addTask(element.description);
     });
-  })
-})
-
-const reorderTasks = (start, end, array) => {
-  let arrtmp = [];
-  arrtmp[end] = array[start];
-  if(start>end) {
-    for(let i=0; i<array.length; i++) {
-      if (i>end && i<=start) {
-        arrtmp[i] = array[i-1];
-      }
-      if (i<end || i>start) {
-        arrtmp[i] = array[i];
-      }
-    }
-    return arrtmp;
-  }
-  else {
-    for(let i=0; i<array.length; i++) {
-      if (i>=start && i<end) {
-        arrtmp[i] = array[i+1];
-      }
-      if (i<start || i>end) {
-        arrtmp[i] = array[i];
-      }
-    }
-    return arrtmp;
-  }
-}
+  });
+});
