@@ -83,3 +83,62 @@ document.addEventListener('click', (element) => {
     element.target.parentElement.children[1].focus();
   }
 });
+
+// Select the draggable element
+let dragStartIndex, dragEndIndex;
+document.querySelectorAll('.task-container').forEach(task => {
+  task.addEventListener('dragstart', e => {
+    dragStartIndex = +task.closest('div').getAttribute('id');
+  })
+  task.addEventListener('dragover', e => {
+    e.preventDefault();
+  })
+  task.addEventListener('dragenter', e => {
+    task.classList.add('drag-over');
+  })
+  task.addEventListener('dragleave', e => {
+    task.classList.remove('drag-over');
+  })
+  task.addEventListener('drop', e => {
+    dragEndIndex = +task.closest('div').getAttribute('id');
+    taskArray = reorderTasks(dragStartIndex-1, dragEndIndex-1, taskArray);
+    // Fix indexes
+    for (let i = 0; i < taskArray.length; i += 1) {
+     taskArray[i].index = i + 1;
+    }
+    localStorage.setItem('mytasks', JSON.stringify(taskArray));
+    document.querySelectorAll('.checkbox').forEach(elem => {
+      elem.parentElement.remove();
+    })
+    taskArray.forEach((element) => {
+      addTask(element.description);
+    });
+  })
+})
+
+const reorderTasks = (start, end, array) => {
+  let arrtmp = [];
+  arrtmp[end] = array[start];
+  if(start>end) {
+    for(let i=0; i<array.length; i++) {
+      if (i>end && i<=start) {
+        arrtmp[i] = array[i-1];
+      }
+      if (i<end || i>start) {
+        arrtmp[i] = array[i];
+      }
+    }
+    return arrtmp;
+  }
+  else {
+    for(let i=0; i<array.length; i++) {
+      if (i>=start && i<end) {
+        arrtmp[i] = array[i+1];
+      }
+      if (i<start || i>end) {
+        arrtmp[i] = array[i];
+      }
+    }
+    return arrtmp;
+  }
+}
