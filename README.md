@@ -22,7 +22,7 @@ In this project, a basic website is built. It will allows users to add/remove/ma
 
 ## LIVE DEMO: 
 
-[To-Do List Project](https://hanszizold.github.io/ToDoList/)
+[To-Do List Project](https://hanszizold.github.io/ToDoList/dist/)
 
 ## Getting Started
 
