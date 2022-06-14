@@ -7,9 +7,7 @@ const removehtml = (element) => {
     // Remove the task deleted
     lsTasks = lsTasks.filter((task) => task.index !== Number(deleteindex));
     // Fix indexes
-    for (let i = 0; i < lsTasks.length; i += 1) {
-      lsTasks[i].index = i + 1;
-    }
+    lsTasks.forEach((e, i) => e.index = i + 1);
     // Update the LS data and taskArray
     localStorage.setItem('mytasks', JSON.stringify(lsTasks));
     // Remove task html code

@@ -5,6 +5,7 @@ import updateTask from '../modules/updatetask.js';
 import removehtml from '../modules/removehtml.js';
 import addTask from '../modules/addtask.js';
 import clearCompleted from '../modules/clearcompleted.js';
+import reorderTasks from '../modules/reorder.js';
 
 const taskDescription = document.querySelector('input');
 let checkbox = []; let taskArray = [];
@@ -52,11 +53,11 @@ loadLocalStorage();
 
 // Click listener to remove tasks
 document.addEventListener('click', (element) => {
-  if (element.target.classList.contains('checkbox') || element.target.classList.contains('trash-active')) {
+  if (element.target.classList.contains('checkbox') ||
+  element.target.classList.contains('trash-active')) {
     checkboxFormat(element);
     removehtml(element);
-    checkbox = document.querySelectorAll('.checkbox');
-    indexNormalization(checkbox);
+    indexNormalization(document.querySelectorAll('.checkbox'));
     taskArray = JSON.parse(localStorage.getItem('mytasks'));
   }
 });
@@ -70,8 +71,7 @@ document.addEventListener('change', (element) => {
 document.addEventListener('click', (element) => {
   if (element.target.classList.contains('clear-completed')) {
     clearCompleted();
-    checkbox = document.querySelectorAll('.checkbox');
-    indexNormalization(checkbox);
+    indexNormalization(document.querySelectorAll('.checkbox'));
     taskArray = JSON.parse(localStorage.getItem('mytasks'));
   }
 });
@@ -85,35 +85,8 @@ document.addEventListener('click', (element) => {
   }
 });
 
-const reorderTasks = (start, end, array) => {
-  const arrtmp = [];
-  arrtmp[end] = array[start];
-  if (start > end) {
-    for (let i = 0; i < array.length; i += 1) {
-      if (i > end && i <= start) {
-        arrtmp[i] = array[i - 1];
-      }
-      if (i < end || i > start) {
-        arrtmp[i] = array[i];
-      }
-    }
-    return arrtmp;
-  }
-
-  for (let i = 0; i < array.length; i += 1) {
-    if (i >= start && i < end) {
-      arrtmp[i] = array[i + 1];
-    }
-    if (i < start || i > end) {
-      arrtmp[i] = array[i];
-    }
-  }
-  return arrtmp;
-};
-
 // Select the draggable element
-let dragStartIndex; let
-  dragEndIndex;
+let dragStartIndex; let dragEndIndex;
 document.querySelectorAll('.task-container').forEach((task) => {
   task.addEventListener('dragstart', () => {
     dragStartIndex = +task.closest('div').getAttribute('id');
@@ -131,15 +104,14 @@ document.querySelectorAll('.task-container').forEach((task) => {
     dragEndIndex = +task.closest('div').getAttribute('id');
     taskArray = reorderTasks(dragStartIndex - 1, dragEndIndex - 1, taskArray);
     // Fix indexes
-    for (let i = 0; i < taskArray.length; i += 1) {
-      taskArray[i].index = i + 1;
-    }
+    taskArray.forEach((e, i) => e.index = i + 1);
+    // Update LS
     localStorage.setItem('mytasks', JSON.stringify(taskArray));
-    document.querySelectorAll('.checkbox').forEach((elem) => {
-      elem.parentElement.remove();
+    // Remove html elements affected
+    document.querySelectorAll('.checkbox').forEach((e) => {
+      e.parentElement.remove();
     });
-    taskArray.forEach((element) => {
-      addTask(element.description);
-    });
+    // Create html elements with descriptions and indexes corrected
+    taskArray.forEach((e) => addTask(e.description));
   });
 });
