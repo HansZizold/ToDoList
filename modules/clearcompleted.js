@@ -10,7 +10,9 @@ const clearCompleted = () => {
   // Update LS and normalize indexes
   let lsTasks = JSON.parse(localStorage.getItem('mytasks'));
   lsTasks = lsTasks.filter((element) => element.completed !== true);
-  lsTasks.forEach((e, i) => e.index = i + 1);
+  lsTasks.forEach((e, i) => {
+    e.index = i + 1;
+  });
   localStorage.setItem('mytasks', JSON.stringify(lsTasks));
 };
 export default clearCompleted;

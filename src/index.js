@@ -53,8 +53,8 @@ loadLocalStorage();
 
 // Click listener to remove tasks
 document.addEventListener('click', (element) => {
-  if (element.target.classList.contains('checkbox') ||
-  element.target.classList.contains('trash-active')) {
+  if (element.target.classList.contains('checkbox')
+  || element.target.classList.contains('trash-active')) {
     checkboxFormat(element);
     removehtml(element);
     indexNormalization(document.querySelectorAll('.checkbox'));
@@ -104,7 +104,9 @@ document.querySelectorAll('.task-container').forEach((task) => {
     dragEndIndex = +task.closest('div').getAttribute('id');
     taskArray = reorderTasks(dragStartIndex - 1, dragEndIndex - 1, taskArray);
     // Fix indexes
-    taskArray.forEach((e, i) => e.index = i + 1);
+    taskArray.forEach((e, i) => {
+      e.index = i + 1;
+    });
     // Update LS
     localStorage.setItem('mytasks', JSON.stringify(taskArray));
     // Remove html elements affected
