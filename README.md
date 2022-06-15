@@ -55,10 +55,12 @@ Hans Paul Zizold
 
 ## SCREEN SHOTS
 
-![Adding](https://user-images.githubusercontent.com/95872387/173733442-88d35dfe-c1bc-4bdc-904b-428a8a675367.jpg)
-![removing](https://user-images.githubusercontent.com/95872387/173733458-8c617031-7dea-4aec-afc1-a799a3b00883.jpg)
-![clearcompleted](https://user-images.githubusercontent.com/95872387/173733465-2afc7bc2-d41c-4c92-8aaf-775f994c9039.jpg)
-![draganddrop](https://user-images.githubusercontent.com/95872387/173733474-549d6201-75f8-486d-b64c-80f5142c81f8.jpg)
+Adding Tasks
+![Adding](https://user-images.githubusercontent.com/95872387/173734343-485fa403-6198-41b8-9356-b042387cc85d.jpg)
+Removing Tasks
+![removing](https://user-images.githubusercontent.com/95872387/173734360-182fc409-2209-4065-83a1-b7b390336937.jpg)
+Removing Tasks Completed
+![clearcompleted](https://user-images.githubusercontent.com/95872387/173734370-c253b2b4-e1a3-4fc0-81a3-b4e71b2caba2.jpg)
 
 ## ACKNOWLEDGEMENTS: 
 
