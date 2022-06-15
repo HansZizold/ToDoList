@@ -56,10 +56,15 @@ Hans Paul Zizold
 ## SCREEN SHOTS
 
 Adding Tasks
+
 ![Adding](https://user-images.githubusercontent.com/95872387/173734343-485fa403-6198-41b8-9356-b042387cc85d.jpg)
+
 Removing Tasks
+
 ![removing](https://user-images.githubusercontent.com/95872387/173734360-182fc409-2209-4065-83a1-b7b390336937.jpg)
+
 Removing Tasks Completed
+
 ![clearcompleted](https://user-images.githubusercontent.com/95872387/173734370-c253b2b4-e1a3-4fc0-81a3-b4e71b2caba2.jpg)
 
 ## ACKNOWLEDGEMENTS: 
