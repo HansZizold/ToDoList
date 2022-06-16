@@ -15,17 +15,17 @@ const addTask = (taskText) => {
   taskdiv.id = checkbox.length + 1;
   // insert the html code in the todos-container position
   AllTasksContainer.appendChild(taskdiv);
-  // download LS
-  const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
-  // update lsTasks
-  const taskObject = {
-    description: taskText,
-    completed: false,
-    index: checkbox.length + 1,
-  };
-  lsTasks.push(taskObject);
-  // update local storage
-  localStorage.setItem('mytasks', JSON.stringify(lsTasks));
-  return lsTasks;
+  // // download LS
+  // const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
+  // // update lsTasks
+  // const taskObject = {
+  //   description: taskText,
+  //   completed: false,
+  //   index: checkbox.length + 1,
+  // };
+  // lsTasks.push(taskObject);
+  // // update local storage
+  // localStorage.setItem('mytasks', JSON.stringify(lsTasks));
+  // return lsTasks;
 };
 export default addTask;
