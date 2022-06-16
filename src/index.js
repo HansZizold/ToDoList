@@ -15,18 +15,8 @@ taskDescription.addEventListener('keypress', (event) => {
   if (event.key === 'Enter' && taskDescription.value) {
     checkbox = document.querySelectorAll('.checkbox');
     event.preventDefault();
-    addTask(taskDescription.value);
-    // update the taskArray
-    const taskObject = {
-      description: taskDescription.value,
-      completed: false,
-      index: checkbox.length + 1,
-    };
-    taskArray.push(taskObject);
+    taskArray = addTask(taskDescription.value);
     taskDescription.value = null;
-    // update local storage
-    localStorage.setItem('mytasks', JSON.stringify(taskArray));
-    // update the checkbox variable
     checkbox = document.querySelectorAll('.checkbox');
   }
 });
