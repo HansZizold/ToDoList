@@ -1,3 +1,4 @@
+import updateLocalStorage from "./updatelocalstorage";
 // Function to remove a group of tasks
 const clearCompleted = () => {
   const checkbox = document.querySelectorAll('.checkbox');
@@ -14,5 +15,6 @@ const clearCompleted = () => {
     e.index = i + 1;
   });
   localStorage.setItem('mytasks', JSON.stringify(lsTasks));
+  updateLocalStorage(lsTasks);
 };
 export default clearCompleted;

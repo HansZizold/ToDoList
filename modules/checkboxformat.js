@@ -1,3 +1,4 @@
+import updateLocalStorage from "./updatelocalstorage";
 // Function to give format when pressing some checkbox
 // Also it changes the status of a task (true/false) and update LS
 const checkboxFormat = (element) => {
@@ -10,7 +11,7 @@ const checkboxFormat = (element) => {
     const completedindex = element.target.parentNode.id - 1;
     const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
     lsTasks[completedindex].completed = !lsTasks[completedindex].completed;
-    localStorage.setItem('mytasks', JSON.stringify(lsTasks));
+    updateLocalStorage(lsTasks);
   }
 };
 export default checkboxFormat;

@@ -1,3 +1,4 @@
+import updateLocalStorage from "./updatelocalstorage";
 // Function to remove the task from LS and to remove task html code
 const removehtml = (element) => {
   if (element.target.classList.contains('trash-active')) {
@@ -11,7 +12,7 @@ const removehtml = (element) => {
       e.index = i + 1;
     });
     // Update the LS data and taskArray
-    localStorage.setItem('mytasks', JSON.stringify(lsTasks));
+    updateLocalStorage(lsTasks);
     // Remove task html code
     element.target.parentNode.remove();
   }

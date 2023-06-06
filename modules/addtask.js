@@ -15,17 +15,13 @@ const addTask = (taskText) => {
   taskdiv.id = checkbox.length + 1;
   // insert the html code in the todos-container position
   AllTasksContainer.appendChild(taskdiv);
-  // // download LS
-  // const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
-  // // update lsTasks
-  // const taskObject = {
-  //   description: taskText,
-  //   completed: false,
-  //   index: checkbox.length + 1,
-  // };
-  // lsTasks.push(taskObject);
-  // // update local storage
-  // localStorage.setItem('mytasks', JSON.stringify(lsTasks));
-  // return lsTasks;
+
+  // Add event listener to the newly created ellipsis element
+  const ellipsisElement = taskdiv.querySelector('.fa-ellipsis-v');
+  ellipsisElement.addEventListener('click', (event) => {
+    const end = event.target.parentElement.children[1].value.length;
+    event.target.parentElement.children[1].setSelectionRange(end, end);
+    event.target.parentElement.children[1].focus();
+  });
 };
 export default addTask;

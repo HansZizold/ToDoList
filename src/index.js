@@ -1,4 +1,6 @@
 import './style.css';
+import createTaskObjectAndSave from '../modules/createtaskobjectandsave.js'
+import updateLocalStorage from '../modules/updatelocalstorage';
 import checkboxFormat from '../modules/checkboxformat.js';
 import indexNormalization from '../modules/indexnormal.js';
 import updateTask from '../modules/updatetask.js';
@@ -8,46 +10,25 @@ import clearCompleted from '../modules/clearcompleted.js';
 import reorderTasks from '../modules/reorder.js';
 
 const taskDescription = document.querySelector('input');
-let checkbox = []; let taskArray = [];
+let taskArray = [];
 
 // Event listener to detect a new task input and call addTask function
 taskDescription.addEventListener('keypress', (event) => {
   if (event.key === 'Enter' && taskDescription.value) {
-    checkbox = document.querySelectorAll('.checkbox');
     event.preventDefault();
     addTask(taskDescription.value);
-    // update the taskArray
-    const taskObject = {
-      description: taskDescription.value,
-      completed: false,
-      index: checkbox.length + 1,
-    };
-    taskArray.push(taskObject);
+    createTaskObjectAndSave(taskDescription.value, taskArray);
     taskDescription.value = null;
-    // update local storage
-    localStorage.setItem('mytasks', JSON.stringify(taskArray));
-    // update the checkbox variable
-    checkbox = document.querySelectorAll('.checkbox');
   }
 });
 
 // Load local storage data
 const loadLocalStorage = () => {
-  const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
-  if (lsTasks !== null) {
-    lsTasks.forEach((element) => {
-      checkbox = document.querySelectorAll('.checkbox');
-      addTask(element.description);
-      // update the taskArray
-      const taskObject = {
-        description: element.description,
-        completed: false,
-        index: checkbox.length + 1,
-      };
-      taskArray.push(taskObject);
-      localStorage.setItem('mytasks', JSON.stringify(taskArray));
-    });
-  }
+  const lsTasks = JSON.parse(localStorage.getItem('mytasks')) || [];
+  lsTasks.forEach((element) => {
+    addTask(element.description);
+    createTaskObjectAndSave(element.description, taskArray);
+  });
 };
 loadLocalStorage();
 
@@ -76,15 +57,6 @@ document.addEventListener('click', (element) => {
   }
 });
 
-// Listener por focus input field
-document.addEventListener('click', (element) => {
-  if (element.target.classList.contains('fa-ellipsis-v')) {
-    const end = element.target.parentElement.children[1].value.length;
-    element.target.parentElement.children[1].setSelectionRange(end, end);
-    element.target.parentElement.children[1].focus();
-  }
-});
-
 // Select the draggable element
 let dragStartIndex; let dragEndIndex;
 document.querySelectorAll('.task-container').forEach((task) => {
@@ -108,7 +80,7 @@ document.querySelectorAll('.task-container').forEach((task) => {
       e.index = i + 1;
     });
     // Update LS
-    localStorage.setItem('mytasks', JSON.stringify(taskArray));
+    updateLocalStorage(taskArray);
     // Remove html elements affected
     document.querySelectorAll('.checkbox').forEach((e) => {
       e.parentElement.remove();
