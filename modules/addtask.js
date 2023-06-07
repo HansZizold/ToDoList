@@ -1,31 +1,45 @@
 const addTask = (taskText) => {
   const AllTasksContainer = document.querySelector('.all-tasks-container');
-  const checkbox = document.querySelectorAll('.checkbox');
+
+  // create a new div and add the 'task-container' class to it
   const taskdiv = document.createElement('div');
-  // assign the class 'task-container'
   taskdiv.className = 'task-container';
   taskdiv.draggable = 'true';
-  // insert the html code for each task to the div variable
-  taskdiv.innerHTML += `
-    <input type="checkbox" class="checkbox">
-    <input type='text' value='${taskText}' class='task-change'>
-    <i class="fas fa-ellipsis-v"></i>
-    <i class="fas fa-trash-alt"></i>
-  `;
-  taskdiv.id = checkbox.length + 1;
-  // insert the html code in the todos-container position
+
+  // create the checkbox input element
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.className = 'checkbox';
+  taskdiv.appendChild(checkbox);
+
+  // create the text input element
+  const taskChange = document.createElement('input');
+  taskChange.type = 'text';
+  taskChange.value = taskText;
+  taskChange.className = 'task-change';
+  taskdiv.appendChild(taskChange);
+
+  // create the ellipsis icon element
+  const ellipsisIcon = document.createElement('i');
+  ellipsisIcon.className = 'fas fa-ellipsis-v';
+  taskdiv.appendChild(ellipsisIcon);
+
+  // create the trash icon element
+  const trashIcon = document.createElement('i');
+  trashIcon.className = 'fas fa-trash-alt';
+  taskdiv.appendChild(trashIcon);
+
+  // append the taskdiv element to the AllTasksContainer
   AllTasksContainer.appendChild(taskdiv);
-  // // download LS
-  // const lsTasks = JSON.parse(localStorage.getItem('mytasks'));
-  // // update lsTasks
-  // const taskObject = {
-  //   description: taskText,
-  //   completed: false,
-  //   index: checkbox.length + 1,
-  // };
-  // lsTasks.push(taskObject);
-  // // update local storage
-  // localStorage.setItem('mytasks', JSON.stringify(lsTasks));
-  // return lsTasks;
+
+  // assign an id to the taskdiv element
+  taskdiv.id = document.querySelectorAll('.checkbox').length;
+
+  // Add event listener to the newly created ellipsis element
+  ellipsisIcon.addEventListener('click', (event) => {
+    const end = event.target.parentElement.children[1].value.length;
+    event.target.parentElement.children[1].setSelectionRange(end, end);
+    event.target.parentElement.children[1].focus();
+  });
 };
 export default addTask;

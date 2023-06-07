@@ -1,18 +1,18 @@
+import updateLocalStorage from './updatelocalstorage.js';
 // Function to remove a group of tasks
 const clearCompleted = () => {
-  const checkbox = document.querySelectorAll('.checkbox');
   // Remove html tasks
-  checkbox.forEach((e) => {
-    if (e.checked) {
-      e.parentNode.remove();
+  document.querySelectorAll('.checkbox').forEach((checkbox) => {
+    if (checkbox.checked) {
+      checkbox.parentNode.remove();
     }
   });
   // Update LS and normalize indexes
   let lsTasks = JSON.parse(localStorage.getItem('mytasks'));
-  lsTasks = lsTasks.filter((element) => element.completed !== true);
-  lsTasks.forEach((e, i) => {
-    e.index = i + 1;
+  lsTasks = lsTasks.filter(({ completed }) => !completed);
+  lsTasks.forEach((task, i) => {
+    task.index = i + 1;
   });
-  localStorage.setItem('mytasks', JSON.stringify(lsTasks));
+  updateLocalStorage(lsTasks);
 };
 export default clearCompleted;
