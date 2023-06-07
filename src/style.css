@@ -7,11 +7,11 @@
 body {
   display: flex;
   justify-content: center;
+  background-color: #f3f4ed; /* add a background color to the body */
   padding-top: 24px;
 }
 
 section {
-  padding-top: 24px;
   box-shadow: 1px 6px 17px -1px rgba(34, 60, 80, 19%);
   width: 60vw;
 }
@@ -21,6 +21,12 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 32px 16px;
+  background-color: #8ad8ed; /* change the background color of the header */
+  border-radius: 10px 10px 0 0; /* add rounded corners to the header */
+}
+
+.header h1 {
+  color: #fff; /* change the color of the heading */
 }
 
 input {
@@ -49,6 +55,41 @@ button:hover {
 
 .fa-sync {
   font-size: 20px;
+  color: #fff; /* change the color of the sync icon */
+  cursor: pointer; /* change the cursor when hover over the sync icon */
+}
+
+.input-container {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.input-text {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-style: italic;
+  border-radius: 4px;
+}
+
+.all-tasks-container {
+  background-color: #fff; /* change the background color of the tasks container */
+  border-radius: 10px; /* add rounded corners to the tasks container */
+  padding: 16px; /* add padding to the tasks container */
+}
+
+.clear-completed {
+  background-color: #ff7b7b; /* change the background color of the clear button */
+  color: #fff; /* change the text color of the clear button */
+  border-radius: 4px; /* add rounded corners to the clear button */
+}
+
+.clear-completed:hover {
+  background-color: #ff5656; /* change the background color of the clear button on hover */
+  cursor: pointer; /* change the cursor when hover over the clear button */
 }
 
 .checkbox {
@@ -73,6 +114,13 @@ button:hover {
   border-bottom: 1px solid #d0d0d0;
   display: flex;
   align-items: center;
+  border-radius: 10px; /* add rounded corners to the task container */
+  margin-bottom: 16px; /* add margin to the bottom of the task container */
+}
+
+.task-container:hover,
+.task-change:hover {
+  background-color: #eef9ff; /* change the background color of the task container on hover */
 }
 
 .checked-task {
@@ -87,10 +135,15 @@ button:hover {
 span {
   flex: 1;
   font-size: 18px;
+  color: #444; /* change the color of the task text */
 }
 
 .fa-trash-alt {
   display: none;
+}
+
+.fa-trash-alt:hover {
+  color: #ff5656; /* change the color of the trash icon on hover */
 }
 
 .trash-active {
@@ -103,4 +156,5 @@ span {
 
 .drag-over {
   border: 2px solid black;
+  border: 2px solid #8ad8ed; /* change the color of the drag border */
 }
